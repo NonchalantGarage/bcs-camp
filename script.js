@@ -21,7 +21,7 @@ var arr1 = [1,2,3];
 
 console.log(arr1);
 
-// cal an expression function because it needs to accept and item, look at fn(arr [i])
+// call an expression function because it needs to accept and item, look at fn(arr [i])
 // called the function
 // gave it an array arr1
 // fn parameter - told it what to do to each item in the array using function(item){return item *2}
@@ -55,3 +55,70 @@ var checkPastLimitSimplified = function(limiter) {
 var arr5 = mapForEach(arr1,checkPastLimitSimplified(2));
 console.log(arr5);
 
+function buildFunctions () {
+
+    var arr = []
+
+    for (var i = 0; i < 3 ; i++) {
+        arr.push(function(){
+            console.log(i);
+        });
+    }
+
+    return arr;
+}
+
+var fs = buildFunctions();
+
+fs[0]();
+fs[1]();
+fs[2]();
+
+
+
+
+
+
+
+
+
+function buildFunctions2 () {
+
+    var arr = []
+
+    for (var i = 0; i < 3 ; i++) {
+        arr.push(
+            (function(j){
+                return function(){
+                    console.log(j);    
+                }
+            }(i))
+        )
+    }
+
+    return arr;
+}
+
+var fs2 = buildFunctions2();
+
+fs2[0]();
+fs2[1]();
+fs2[2]();
+
+function sayHiLater() {
+    var greeting = 'Hi!';
+
+    setTimeout(function(){  
+        console.log(greeting);
+
+    }, 3000);
+}
+
+// loop through tasks array and task object with new content.
+// At each iteration of this for loop, we are checking to see if that individual task's id property matches the taskId argument that we passed into completeEditTask(). There is one problem: taskId is a string and tasks[i].id is a number, and when we compare the two, we need to make sure that we are comparing a number to a number. This is why we wrap the taskId with a parseInt() function and convert it to a number for the comparison.
+for (var i = 0; i < tasks.length; i++) {
+    if (tasks[i].id === parseInt(taskId)) {
+      tasks[i].name = taskName;
+      tasks[i].type = taskType;
+    }
+  };
